@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{371AF08C-26F7-021A-D868-9572B3005A63}") = "Geminus", "Assembly-CSharp.csproj", "{C1AE1947-F57C-900F-7041-71AC8C61F7D2}"
+EndProject
+Project("{371AF08C-26F7-021A-D868-9572B3005A63}") = "Geminus", "Assembly-CSharp-Editor.csproj", "{849D0DF5-9B25-507F-1E7A-089B568DB19B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1AE1947-F57C-900F-7041-71AC8C61F7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1AE1947-F57C-900F-7041-71AC8C61F7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1AE1947-F57C-900F-7041-71AC8C61F7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1AE1947-F57C-900F-7041-71AC8C61F7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849D0DF5-9B25-507F-1E7A-089B568DB19B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849D0DF5-9B25-507F-1E7A-089B568DB19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849D0DF5-9B25-507F-1E7A-089B568DB19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849D0DF5-9B25-507F-1E7A-089B568DB19B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

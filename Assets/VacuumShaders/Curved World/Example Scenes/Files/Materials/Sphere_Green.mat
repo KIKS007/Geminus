@@ -1,0 +1,360 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sphere_Green
+  m_Shader: {fileID: 4800000, guid: 659dfd41c9b8f404390306092e32514c, type: 3}
+  m_ShaderKeywords: V_CW_IBL_MATCAP
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _NormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 8c7294824809e1648abc9bcb3946e621, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Detail
+        second:
+          m_Texture: {fileID: 2800000, guid: 8c7294824809e1648abc9bcb3946e621, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailMask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailAlbedoMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _V_CW_IBL_Cube
+        second:
+          m_Texture: {fileID: 8900000, guid: f70a4f3cd482731419aa84c35eae87ba, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _V_CW_Specular_Lookup
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _V_CW_LightRampTex
+        second:
+          m_Texture: {fileID: 2800000, guid: c7cc4eb3207a5994a878772725ec72fa, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _V_CW_IBL_Matcap
+        second:
+          m_Texture: {fileID: 2800000, guid: 022f4a87ae2030144b4a5f9977445849, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SecondBumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BlendTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 8c7294824809e1648abc9bcb3946e621, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _SrcBlend
+        second: 1
+      data:
+        first:
+          name: _DstBlend
+        second: 0
+      data:
+        first:
+          name: _Cutoff
+        second: .460000008
+      data:
+        first:
+          name: _Shininess
+        second: .234999999
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
+      data:
+        first:
+          name: _ZWrite
+        second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: .5
+      data:
+        first:
+          name: _BumpScale
+        second: 1
+      data:
+        first:
+          name: _OcclusionStrength
+        second: 1
+      data:
+        first:
+          name: _DetailNormalMapScale
+        second: 1
+      data:
+        first:
+          name: _UVSec
+        second: 0
+      data:
+        first:
+          name: _Mode
+        second: 0
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _V_CW_Rim_Bias
+        second: .200000003
+      data:
+        first:
+          name: _V_CW_Rim_Power
+        second: 3
+      data:
+        first:
+          name: V_CW_Label_Tag
+        second: 0
+      data:
+        first:
+          name: V_CW_Label_UnityDefaults
+        second: 0
+      data:
+        first:
+          name: V_CW_Label_Albedo
+        second: 0
+      data:
+        first:
+          name: V_CW_Label_Modes
+        second: 0
+      data:
+        first:
+          name: V_CW_Rendering_Mode
+        second: 0
+      data:
+        first:
+          name: V_CW_Texture_Mix_Mode
+        second: 0
+      data:
+        first:
+          name: _V_CW_Fresnel_Bias
+        second: 0
+      data:
+        first:
+          name: _V_CW_IBL_Intensity
+        second: 1
+      data:
+        first:
+          name: _V_CW_IBL_Contrast
+        second: 1
+      data:
+        first:
+          name: _V_CW_Specular_Intensity
+        second: 1
+      data:
+        first:
+          name: _V_CW_SpecularOffset
+        second: 0
+      data:
+        first:
+          name: V_CW_Label_Cutoff
+        second: 0
+      data:
+        first:
+          name: V_CW_CW_OPTIONS
+        second: 0
+      data:
+        first:
+          name: _V_CW_OutlineWidth
+        second: 13.6800003
+      data:
+        first:
+          name: V_CW_Label_Cartoon
+        second: 0
+      data:
+        first:
+          name: V_CW_Label_Specular
+        second: 0
+      data:
+        first:
+          name: _BumpStrength
+        second: 1
+      data:
+        first:
+          name: _ReflectStrengthAlphaOffset
+        second: 0
+      data:
+        first:
+          name: _BumpMap_UV_Scale
+        second: 1
+      data:
+        first:
+          name: _SecondBumpMap_UV_Scale
+        second: 1
+      data:
+        first:
+          name: _NormalMapStrength
+        second: 1
+      data:
+        first:
+          name: _NormalMap_UV_Scale
+        second: 1
+      data:
+        first:
+          name: _Outline
+        second: 10.1999998
+      data:
+        first:
+          name: _OutlineWidth
+        second: 9.25
+      data:
+        first:
+          name: _VertexBlend
+        second: -.219999999
+    m_Colors:
+      data:
+        first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Color
+        second: {r: .168756723, g: .926470578, b: .0681228489, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .5, g: .5, b: .5, a: 1}
+      data:
+        first:
+          name: _V_CW_MainTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _V_CW_DetailTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _V_CW_Rim_Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _V_CW_OutlineColor
+        second: {r: .79411763, g: .402897924, b: .402897924, a: 1}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _V_CW_DecalTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _V_CW_Detail_Scroll
+        second: {r: .99000001, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _V_CW_BlendTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
