@@ -9,13 +9,12 @@ public class PlayerScript : MonoBehaviour
 	[Header ("Movement")]
 	public float movementSpeed;
 	public float jumpForce;
-	[Range(1, 10)]
 	public float gravityForce = 1;
 	
 	private Player player; // The Rewired Player
 	private Rigidbody rigidbodyPlayer;
 	
-	private Vector3 movementVector;
+	public Vector3 movementVector;
 
 	private float distToGround;
 	
@@ -48,10 +47,10 @@ public class PlayerScript : MonoBehaviour
 	
 	void GetInput() 
 	{
-		movementVector.x = player.GetAxis("Move Horizontal") * movementSpeed * Time.fixedDeltaTime;
-		movementVector.y = rigidbodyPlayer.velocity.y + Physics.gravity.y * gravityForce * Time.fixedDeltaTime;
-		movementVector.z = player.GetAxis("Move Vertical") * movementSpeed * Time.fixedDeltaTime;
-		
+		movementVector.x = player.GetAxis("Move Horizontal");
+		movementVector.y = 0f;
+		movementVector.z = player.GetAxis("Move Vertical");
+
 		if(player.GetButton("Jump") && IsGrounded ())
 		{
 			PlayerJump ();
@@ -65,7 +64,11 @@ public class PlayerScript : MonoBehaviour
 	
 	void PlayerMovement() 
 	{
-		rigidbodyPlayer.velocity = movementVector;
+		//rigidbodyPlayer.velocity = movementVector;
+		rigidbodyPlayer.MovePosition (transform.position + movementVector * movementSpeed * Time.fixedDeltaTime);
+
+		if(!IsGrounded ())
+			rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
 	}
 	
 	void PlayerJump ()
