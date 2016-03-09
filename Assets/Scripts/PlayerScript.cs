@@ -17,6 +17,11 @@ public class PlayerScript : MonoBehaviour
 	public Vector3 movementVector;
 
 	private float distToGround;
+
+	public bool rightBlocked;
+	public bool leftBlocked;
+	public bool forwardsBlocked;
+	public bool backwardsBlocked;
 	
 	void Awake ()
 	{
@@ -50,6 +55,18 @@ public class PlayerScript : MonoBehaviour
 		movementVector.x = player.GetAxis("Move Horizontal");
 		movementVector.y = 0f;
 		movementVector.z = player.GetAxis("Move Vertical");
+
+		if (leftBlocked && movementVector.x < 0)
+			movementVector.x = 0;
+
+		if (rightBlocked && movementVector.x > 0)
+			movementVector.x = 0;
+
+		if (backwardsBlocked && movementVector.z < 0)
+			movementVector.z = 0;
+
+		if (forwardsBlocked && movementVector.z > 0)
+			movementVector.z = 0;
 
 		if(player.GetButton("Jump") && IsGrounded ())
 		{
