@@ -22,7 +22,14 @@ public class PlayerScript : MonoBehaviour
 	public bool leftBlocked;
 	public bool forwardsBlocked;
 	public bool backwardsBlocked;
-	
+
+	[HideInInspector]
+	public float bumpForce;
+	[HideInInspector]
+	public bool bumped = false;
+	[HideInInspector]
+	public float bumpedDuration;
+
 	void Awake ()
 	{
 		 // Get the Rewired Player object for this player and keep it for the duration of the character's lifetime
@@ -43,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 	void Update () 
 	{
 		GetInput();
+
 	}
 	
 	void FixedUpdate () 
@@ -52,20 +60,20 @@ public class PlayerScript : MonoBehaviour
 	
 	void GetInput() 
 	{
-		movementVector.x = player.GetAxis("Move Horizontal");
-		movementVector.y = 0f;
-		movementVector.z = player.GetAxis("Move Vertical");
+		movementVector = new Vector3 (player.GetAxisRaw ("Move Horizontal"), 0, player.GetAxisRaw ("Move Vertical"));
+
+		movementVector = movementVector.normalized * movementSpeed;
 
 		if (leftBlocked && movementVector.x < 0)
 			movementVector.x = 0;
 
-		if (rightBlocked && movementVector.x > 0)
+		else if (rightBlocked && movementVector.x > 0)
 			movementVector.x = 0;
 
-		if (backwardsBlocked && movementVector.z < 0)
+		else if (backwardsBlocked && movementVector.z < 0)
 			movementVector.z = 0;
 
-		if (forwardsBlocked && movementVector.z > 0)
+		else if (forwardsBlocked && movementVector.z > 0)
 			movementVector.z = 0;
 
 		if(player.GetButton("Jump") && IsGrounded ())
@@ -81,15 +89,50 @@ public class PlayerScript : MonoBehaviour
 	
 	void PlayerMovement() 
 	{
-		//rigidbodyPlayer.velocity = movementVector;
-		rigidbodyPlayer.MovePosition (transform.position + movementVector * movementSpeed * Time.fixedDeltaTime);
+		if(!bumped)
+			rigidbodyPlayer.MovePosition (transform.position + movementVector * Time.deltaTime);
 
-		if(!IsGrounded ())
-			rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
+		rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
 	}
 	
 	void PlayerJump ()
 	{
 		rigidbodyPlayer.velocity = new Vector3(rigidbodyPlayer.velocity.x, jumpForce, rigidbodyPlayer.velocity.z);
+	}
+
+
+	public void Bump (BumpedDirection direction)
+	{
+		if(!bumped)
+		{
+			Debug.Log ("Bumped");
+
+			bumped = true;
+
+			switch (direction)
+			{
+			case BumpedDirection.Left:
+				rigidbodyPlayer.AddForce (Vector3.left * bumpForce, ForceMode.Impulse);
+				break;
+			case BumpedDirection.Forward:
+				rigidbodyPlayer.AddForce (Vector3.forward * bumpForce, ForceMode.Impulse);
+				break;
+			case BumpedDirection.Right:
+				rigidbodyPlayer.AddForce (Vector3.right * bumpForce, ForceMode.Impulse);
+				break;
+			case BumpedDirection.Backward:
+				rigidbodyPlayer.AddForce (-Vector3.forward * bumpForce, ForceMode.Impulse);
+				break;
+			}
+
+			StartCoroutine (BumpDuration ());
+		}
+	}
+
+	IEnumerator BumpDuration ()
+	{
+		yield return new WaitForSeconds (bumpedDuration);
+
+		bumped = false;
 	}
 }

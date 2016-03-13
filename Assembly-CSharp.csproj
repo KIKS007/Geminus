@@ -60,6 +60,7 @@
      <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\VibrationManager.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Assets\Water (Unity)\Scripts\Displace.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Assets\Water (Unity)\Scripts\GerstnerDisplace.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Assets\Water (Unity)\Scripts\MeshContainer.cs" />
@@ -82,56 +83,80 @@
      <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\Scripts\CW_Demo_OnStart.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\ThirdPersonCharacter\Scripts\CW_Demo_ThirdPerson_Character.cs" />
      <Compile Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\ThirdPersonCharacter\Scripts\CW_Demo_ThirdPerson_UserControl.cs" />
-     <Compile Include="Assets\blexbox\InstantGoodDay\script\Ambient.cs" />
-     <Compile Include="Assets\blexbox\InstantGoodDay\script\InstantGoodDay.cs" />
+     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Standard-Base.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\Empty.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\Unlit_Terra_2Tex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Glass\Glass_GrabPass.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Water (Unity)\Water_Advanced.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\WavingGrass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\DX11\Standard_Distance_Based.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeSoftOcclusionLeavesRendertex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Standard (Outline)\StandardSpecular.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Standard\Standard.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add_2Pass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_2Pass_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\VertexLit\VertexLit_Cutout.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_SpeedTreeCommon.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
      <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Standard\StandardSpecular.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle AddMultiply.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceRaytrace.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Cutout_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Cutout_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Projector\Projector_Muliply.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeSoftOcclusionBarkRendertex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Surface.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_2Pass_Blend_Decal.shader" />
+     <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\Projectors\Guidelines.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ColorMask0.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlur.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\SpeedTree\SpeedTreeBillboard.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Sprite\Default_2_Sided.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle MultiplyDouble.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Standard-FirstPass.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\RadialBlur.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
      <None Include="Assets\Rewired\Documentation\licences.txt" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit (Outline)\Unlit_Blend_Detail.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Water (Unity)\Water_Simple.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Diffuse-FirstPass.shader" />
      <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorLeavesRendertex.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Flare\Flare.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\Unlit_Terra_3Tex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\DX11\Standard_Edge_Length.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\ODL_Terra_Diffuse_3Tex.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\ODL_Terra_Diffuse_2Tex.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit (Outline)\Unlit_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_UnityStandardCore.cginc" />
@@ -151,32 +176,46 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle Alpha Blend.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Cutout_Diffuse.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_TerrainSplatmapCommon.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light (Outline)\ODL_Blend_Decal.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfField34.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\Camera-DepthNormalTexture.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\ColorMask0.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_UnityStandardInput.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Outline.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle AddSmooth.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_2Pass_Blend_Detail.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MobileBlur.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SSAOShader.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ConvertDepth.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurvesSimple.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\BillboardTree.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_2Pass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Cutout.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_2Pass_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Diffuse-BaseMap.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CreaseApply.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_2Pass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Water (Unity)\Water_Basic.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_VertexLit.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Diffuse-AddPass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (Unity)\Standard-AddPass.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Skybox\Background_2D.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Sprite\Default.shader" />
-     <None Include="Assets\blexbox\InstantGoodDay\material\bbDifuseNoFog.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Diffuse.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GlobalFog.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeSoftOcclusionLeaves.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorBarkOptimized.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionSelective.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\Bokeh34.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Standard (Outline)\Standard.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorLeavesFast.shader" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
@@ -185,14 +224,22 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Cutout_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Functions.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_UnityBuiltin2xTreeLibrary.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add_2Pass_Blend_Decal.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\Projectors\Shaders\ProjectorLight.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\CameraMotionBlur.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Example\Example_Surface.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\ShadowCaster_Opaque.shader" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorLeaves.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\DLAA.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Cutout_Blend_Detail.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrainDX11.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_2Pass_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle Add.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_UnityStandardShadow.cginc" />
@@ -201,46 +248,72 @@
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorBark.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Sprite\Diffuse.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Blend_Decal.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_UnityStandardMeta.cginc" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\TwirlEffect.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VortexEffect.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\ShadowCaster_Cutout.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorLeavesOptimized.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Adaptation.shader" />
      <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_2Pass_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_SpeedTreeBillboardCommon.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\Unlit_Terra_4Tex.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseAndGrain.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_ForwardBase.cginc" />
+     <None Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\Projectors\Shaders\ProjectorMultiply.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Example Scenes\Files\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit (Outline)\Unlit_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeCreatorBarkRendertex.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Example\Example_Unlit.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_Blend_Detail.shader" />
-     <None Include="Assets\blexbox\InstantGoodDay\material\bbDifuseAlphaNoFog.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light (Outline)\ODL_Diffuse.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Cutout_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Transparent_2Pass_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Terrain (T4M)\ODL_Terra_Diffuse_4Tex.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\VertexLit\VertexLit_Transparent.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle Multiply.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Nature\TreeSoftOcclusionBark.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light (Outline)\ODL_Blend_Vertex_Alpha.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Resources\Outline.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_Blend_Vertex_Alpha.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\cginc\CurvedWorld_Projector.cginc" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light (Outline)\ODL_Blend_Detail.shader" />
+     <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Glass\Glass_Simple.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Cutout_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle Blend.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\SpeedTree\SpeedTree.shader" />
      <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Blend_Detail.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Particles\Particle Premultiply Blend.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\Unlit\Unlit_Add_2Pass_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Transparent_Blend_Decal.shader" />
      <None Include="Assets\VacuumShaders\Curved World\Shaders\One Directional Light\ODL_Add_2Pass_Blend_Detail.shader" />
+     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 5.3.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -248,29 +321,36 @@
  <HintPath>C:/Program Files/Unity 5.3.1f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="DemiLib">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
  </Reference>
  <Reference Include="DOTween">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="DOTween43">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DOTween/DOTween43.dll</HintPath>
  </Reference>
  <Reference Include="DOTween46">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DOTween/DOTween46.dll</HintPath>
  </Reference>
  <Reference Include="DOTween50">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DOTween/DOTween50.dll</HintPath>
  </Reference>
  <Reference Include="DOTweenPro">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+ </Reference>
+ <Reference Include="XInputDotNetPure">
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Plugins/x86_64/XInputDotNetPure.dll</HintPath>
  </Reference>
  <Reference Include="Rewired_Core">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
  </Reference>
  <Reference Include="VacuumShaders.CurvedWorld">
- <HintPath>C:/Users/Keryann/Documents/Geminus/Assets/VacuumShaders/Curved World/Scripts/VacuumShaders.CurvedWorld.dll</HintPath>
+ <HintPath>C:/Users/Keryann/Documents/GitHub/Geminus/Assets/VacuumShaders/Curved World/Scripts/VacuumShaders.CurvedWorld.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{FA96CADF-4AC0-BDF7-23B8-7552B666976D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

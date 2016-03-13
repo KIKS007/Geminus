@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum BumpedDirection {Left, Forward, Right, Backward}
+
 public class CameraFollowScript : MonoBehaviour 
 {
 	public Vector3 player1ToScreen;
@@ -55,6 +57,10 @@ public class CameraFollowScript : MonoBehaviour
 	private PlayerScript player1Script;
 	private PlayerScript player2Script;
 
+	private float screenEdgeMargin;
+
+	private SpringJoint playersJoint;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -64,6 +70,12 @@ public class CameraFollowScript : MonoBehaviour
 		screenWidthEdge = screenWidthEdge / 100 * Screen.width;
 		screenTopEdge = screenTopEdge / 100 * Screen.height;
 		screenBottomEdge = screenBottomEdge / 100 * Screen.height;
+
+		screenWidthEdge2 = screenWidthEdge2 / 100 * Screen.width;
+		screenTopEdge2 = screenTopEdge2 / 100 * Screen.height;
+		screenBottomEdge2 = screenBottomEdge2 / 100 * Screen.height;
+
+		screenEdgeMargin = 10 / screenWidthEdge2 * 100 ;
 
 		originalPosition = transform.position;
 		offsetCamera = originalPosition;
@@ -76,19 +88,20 @@ public class CameraFollowScript : MonoBehaviour
 
 		cameraComponent = GetComponent<Camera>();
 
+		playersJoint = player1.GetComponent<SpringJoint> ();
 	}
 
 	void Update ()
 	{
-
 		player1ToScreen = cameraComponent.WorldToScreenPoint (player1.transform.position);
 
 		distanceBetweenPlayers = Vector3.Distance (player1.transform.position, player2.transform.position);
 
-		if(!player1Script.leftBlocked && !player2Script.rightBlocked || !player2Script.leftBlocked && !player1Script.rightBlocked)
-			pointBetweenTheTwo = pointBetweenPlayers = player1.transform.position + (player2.transform.position - player1.transform.position) * 0.5f;
+		pointBetweenTheTwo = pointBetweenPlayers = player1.transform.position + (player2.transform.position - player1.transform.position) * 0.5f;
+	}
 
-
+	void FixedUpdate () 
+	{
 		switch (playerFollowed)
 		{
 		case 0:
@@ -112,23 +125,17 @@ public class CameraFollowScript : MonoBehaviour
 		{
 		case 0:
 			ZoomOut ();
+			playersJoint.maxDistance = 50;
 			followingBothBy = "Zooming Out";
 			break;
 		case 1:
-			BlockPlayersToScreenEdges ();
+			playersJoint.maxDistance = 20;
 			followingBothBy = "Blocking Them";
 			break;
 		case 2:
 			followingBothBy = "Doing Nothing";
 			break;
 		}
-	}
-
-	void FixedUpdate () 
-	{
-		
-
-		
 	}
 
 	void BlockPlayersToScreenEdges ()
@@ -358,7 +365,6 @@ public class CameraFollowScript : MonoBehaviour
 			player2Script.backwardsBlocked = false;
 			player2Script.forwardsBlocked = false;
 		}
-
 	}
 
 	void ZoomOut ()
@@ -367,6 +373,11 @@ public class CameraFollowScript : MonoBehaviour
 		{
 			offsetCamera.y = Mathf.Lerp(offsetCamera.y, originalPosition.y, cameraLerpZoomOut);
 			offsetCamera.z = Mathf.Lerp(offsetCamera.z, originalPosition.z, cameraLerpZoomOut);
+
+			player1Script.backwardsBlocked = false;
+			player1Script.forwardsBlocked = false;
+			player1Script.backwardsBlocked = false;
+			player1Script.forwardsBlocked = false;
 		}
 
 		else if(distanceBetweenPlayers > distanceMinZoomOut && distanceBetweenPlayers < distanceMaxZoomOut)
@@ -377,19 +388,21 @@ public class CameraFollowScript : MonoBehaviour
 			offsetCamera.y = Mathf.Lerp(offsetCamera.y, offsetY, cameraLerpZoomOut);
 
 			offsetCamera.z = Mathf.Lerp(offsetCamera.z, offsetZ, cameraLerpZoomOut);
+
+			player1Script.backwardsBlocked = false;
+			player1Script.forwardsBlocked = false;
+			player1Script.backwardsBlocked = false;
+			player1Script.forwardsBlocked = false;
 		}
 		else if(distanceBetweenPlayers > distanceMaxZoomOut)
 		{
-			BlockPlayersToScreenEdgesZoomOut ();
+			//BlockPlayersToScreenEdgesZoomOut ();
 		}
 	}
 
 	void CameraFollowBoth ()
 	{
 		transform.position = Vector3.Lerp (transform.position, FollowBothPosition (), cameraLerp);
-
-		/*if(cameraLookAt)
-			transform.LookAt (Vector3.Lerp (transform.position, pointBetweenPlayers, cameraLerp));*/
 
 		if(cameraLookAt)
 			transform.LookAt (pointBetweenPlayers);
@@ -423,16 +436,15 @@ public class CameraFollowScript : MonoBehaviour
 
 	public Vector3 FollowBothPosition ()
 	{
-		if(!player1Script.leftBlocked && !player2Script.rightBlocked || !player2Script.leftBlocked && !player1Script.rightBlocked)
-			pointBetweenPlayers = player1.transform.position + (player2.transform.position - player1.transform.position) * 0.5f;
+		pointBetweenPlayers = player1.transform.position + (player2.transform.position - player1.transform.position) * 0.5f;
 
 		pointBetweenPlayers.y = 0;
 
-		// Si Player1 est devant basé position sur lui
+		// Si Player1 est devant, baser position sur lui
 		if(player1.transform.position.z < player2.transform.position.z) 
 			pointBetweenPlayers.z = player1.transform.position.z + (player2.transform.position.z - player1.transform.position.z) * 0.2f;
 
-		// Si Player2 est devant basé position sur lui
+		// Si Player2 est devant, baser position sur lui
 		else if(player1.transform.position.z > player2.transform.position.z)
 			pointBetweenPlayers.z = player2.transform.position.z + (player1.transform.position.z - player2.transform.position.z) * 0.2f;
 
