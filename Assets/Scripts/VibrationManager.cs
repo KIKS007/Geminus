@@ -3,7 +3,7 @@ using System.Collections;
 using XInputDotNetPure;
 using DG.Tweening;
 
-public class VibrationManager : MonoBehaviour
+public class VibrationManager : MonoBehaviour, baiser
 {
 	private float leftMotorPlayer1;
 	private float rightMotorPlayer1;
@@ -21,6 +21,7 @@ public class VibrationManager : MonoBehaviour
 	private bool player2Vibrating;
 	private bool player3Vibrating;
 	private bool player4Vibrating;
+
 
 	void OnLevelWasLoaded ()
 	{
@@ -47,9 +48,48 @@ public class VibrationManager : MonoBehaviour
 			GamePad.SetVibration (PlayerIndex.Four, leftMotorPlayer4, rightMotorPlayer4);
 	}
 
-	public void Vibrate (PlayerIndex whichPlayer, float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration, Ease easeType)
+	public void Vibrate (PlayerIndex whichPlayer, float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration = 5f, Ease easeType = Ease.Linear)
 	{
-		
+		if(whichPlayer == PlayerIndex.One && !player1Vibrating)
+			StartCoroutine(VibrationPlayer1 (leftMotor, rightMotor, duration, startDuration, stopDuration, easeType));
+
+		if(whichPlayer == PlayerIndex.Two && !player2Vibrating)
+			StartCoroutine(VibrationPlayer2 (leftMotor, rightMotor, duration, startDuration, stopDuration, easeType));
+
+		if(whichPlayer == PlayerIndex.Three && !player3Vibrating)
+			StartCoroutine(VibrationPlayer3 (leftMotor, rightMotor, duration, startDuration, stopDuration, easeType));
+
+		if(whichPlayer == PlayerIndex.Four && !player4Vibrating)
+			StartCoroutine(VibrationPlayer4 (leftMotor, rightMotor, duration, startDuration, stopDuration, easeType));
+	}
+
+	IEnumerator VibrationPlayer1 (float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration, Ease easeType)
+	{
+		player1Vibrating = true;
+
+
+		yield return null;
+	}
+
+	IEnumerator VibrationPlayer2 (float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration, Ease easeType)
+	{
+		player2Vibrating = true;
+	
+		yield return null;
+	}
+
+	IEnumerator VibrationPlayer3 (float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration, Ease easeType)
+	{
+		player3Vibrating = true;
+
+		yield return null;
+	}
+
+	IEnumerator VibrationPlayer4 (float leftMotor, float rightMotor, float duration, float startDuration, float stopDuration, Ease easeType)
+	{
+		player4Vibrating = true;
+
+		yield return null;
 	}
 
 	public void StopVibration ()
@@ -64,4 +104,10 @@ public class VibrationManager : MonoBehaviour
 	{
 		StopVibration ();
 	}
+}
+
+
+public interface baiser{
+	void sodomie(int taileducul, string criededouleur);
+	float facial(Vector3 velocitysperm, Mesh faceModel);
 }
