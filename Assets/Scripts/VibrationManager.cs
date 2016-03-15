@@ -19,8 +19,6 @@ public class VibrationManager : MonoBehaviour
 	void Start ()
 	{
 		StopVibration ();
-
-		Vibrate (0, 0.8f, 5, 0, 0, 5, 5);
 	}
 
 	void Update ()
@@ -36,18 +34,33 @@ public class VibrationManager : MonoBehaviour
 
 		if(leftMotorVibrating [3] == true || rightMotorVibrating [3] == true)
 			GamePad.SetVibration (PlayerIndex.Four, playersLeftMotor [3], playersRightMotor [3]);
+
 	}
 		
-	public void Vibrate (int whichPlayer, float leftMotor = 0f, float durationLeftMotor = 0f, float rightMotor = 0f, float durationRightMotor = 0f, float startDuration = 0f, float stopDuration = 0f, Ease easeType = Ease.Linear)
+		
+	public void VibrateBothMotors (int whichPlayer, float leftMotor = 0f, float durationLeftMotor = 0f, float rightMotor = 0f, float durationRightMotor = 0f, float startDuration = 0f, float stopDuration = 0f, Ease easeType = Ease.Linear)
 	{
 		if(leftMotor != 0)
 			StartCoroutine(VibrationLeftMotor (whichPlayer, leftMotor, durationLeftMotor, startDuration, stopDuration, easeType));
 
 		if(rightMotor != 0)
 			StartCoroutine(VibrationRightMotor (whichPlayer, rightMotor, durationRightMotor, startDuration, stopDuration, easeType));
+	}
+
+	public void VibrateLeftMotor (int whichPlayer, float leftMotor = 0f, float durationLeftMotor = 0f, float startDuration = 0f, float stopDuration = 0f, Ease easeType = Ease.Linear)
+	{
+		if(leftMotor != 0)
+			StartCoroutine(VibrationLeftMotor (whichPlayer, leftMotor, durationLeftMotor, startDuration, stopDuration, easeType));
 
 	}
 
+	public void VibrateRightMotor (int whichPlayer, float rightMotor = 0f, float durationRightMotor = 0f, float startDuration = 0f, float stopDuration = 0f, Ease easeType = Ease.Linear)
+	{
+		if(rightMotor != 0)
+			StartCoroutine(VibrationRightMotor (whichPlayer, rightMotor, durationRightMotor, startDuration, stopDuration, easeType));
+
+	}
+		
 	IEnumerator VibrationLeftMotor (int whichPlayer, float leftMotor, float durationLeftMotor, float startDuration, float stopDuration, Ease easeType)
 	{
 		if(leftMotorVibrating [whichPlayer] == false)
@@ -92,48 +105,6 @@ public class VibrationManager : MonoBehaviour
 		yield return null;
 
 	}
-
-
-	/*IEnumerator VibrationPlayer1 (float leftMotor, float durationLeftMotor, float rightMotor, float durationRightMotor, float startDuration, float stopDuration, Ease easeType)
-	{
-		player1Vibrating = true;
-
-		Tween myTween;
-		Tween myTween2;
-
-		if(leftMotor != 0)
-			myTween = DOTween.To(()=> leftMotorPlayer1, x=> leftMotorPlayer1 = x, leftMotor, durationLeftMotor);
-
-		if(rightMotor != 0)
-			myTween2 = DOTween.To(()=> rightMotorPlayer1, x=> rightMotorPlayer1 = x, rightMotor, durationRightMotor);
-
-
-
-		player1Vibrating = false;
-		yield return null;
-
-	}
-
-	IEnumerator VibrationPlayer2 (float leftMotor, float durationLeftMotor, float rightMotor, float durationRightMotor, float startDuration, float stopDuration, Ease easeType)
-	{
-		player2Vibrating = true;
-	
-		yield return null;
-	}
-
-	IEnumerator VibrationPlayer3 (float leftMotor, float durationLeftMotor, float rightMotor, float durationRightMotor, float startDuration, float stopDuration, Ease easeType)
-	{
-		player3Vibrating = true;
-
-		yield return null;
-	}
-
-	IEnumerator VibrationPlayer4 (float leftMotor, float durationLeftMotor, float rightMotor, float durationRightMotor, float startDuration, float stopDuration, Ease easeType)
-	{
-		player4Vibrating = true;
-
-		yield return null;
-  */
 
 	public void StopVibration ()
 	{

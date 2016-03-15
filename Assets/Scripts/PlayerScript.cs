@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
 		rigidbodyPlayer = GetComponent<Rigidbody>();
 
 		distToGround = GetComponent<Collider> ().bounds.extents.y;
+
 	}
 	
 	// Use this for initialization
