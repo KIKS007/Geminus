@@ -24,22 +24,17 @@ public class CameraFollowScript : MonoBehaviour
 	public float cameraLerp = 0.05f;
 	public bool cameraLookAt = false;
 
-	[Header("Blocking Mode %")]
-	public float screenWidthEdge = 5f;
-	public float screenTopEdge = 1.5f;
-	public float screenBottomEdge = 18f;
-
 	[Header("Zoom Out Mode")]
 	public float cameraLerpZoomOut = 0.05f;
 	public float distanceBetweenPlayers;
 	public float distanceMinZoomOut = 20;
 	public float distanceMaxZoomOut = 40;
 	public float zoomOutCoefficient = 0.4f;
+	public float minDistanceJoint = 50f;
 
-	[Header("Blocking Zoom Out Mode %")]
-	public float screenWidthEdge2 = 5f;
-	public float screenTopEdge2 = 1.5f;
-	public float screenBottomEdge2 = 18f;
+	[Header ("Blocking Mode")]
+	public float minDistanceJoint2 = 20f;
+
 
 	private GameObject player1;
 	private GameObject player2;
@@ -54,28 +49,16 @@ public class CameraFollowScript : MonoBehaviour
 	private Vector3 player1WorldToScreen;
 	private Vector3 player2WorldToScreen;
 
-	private PlayerScript player1Script;
-	private PlayerScript player2Script;
-
-	private float screenEdgeMargin;
+	private PlayerMovement player1Script;
+	private PlayerMovement player2Script;
 
 	private SpringJoint playersJoint;
 
 	// Use this for initialization
 	void Start () 
 	{
-		Debug.Log (Screen.height);
-		Debug.Log (Screen.width);
-
-		screenWidthEdge = screenWidthEdge / 100 * Screen.width;
-		screenTopEdge = screenTopEdge / 100 * Screen.height;
-		screenBottomEdge = screenBottomEdge / 100 * Screen.height;
-
-		screenWidthEdge2 = screenWidthEdge2 / 100 * Screen.width;
-		screenTopEdge2 = screenTopEdge2 / 100 * Screen.height;
-		screenBottomEdge2 = screenBottomEdge2 / 100 * Screen.height;
-
-		screenEdgeMargin = 10 / screenWidthEdge2 * 100 ;
+		/*Debug.Log (Screen.height);
+		Debug.Log (Screen.width);*/
 
 		originalPosition = transform.position;
 		offsetCamera = originalPosition;
@@ -83,8 +66,8 @@ public class CameraFollowScript : MonoBehaviour
 		player1 = GameObject.Find ("Player 1");
 		player2 = GameObject.Find ("Player 2");
 
-		player1Script = player1.GetComponent<PlayerScript> ();
-		player2Script = player2.GetComponent<PlayerScript> ();
+		player1Script = player1.GetComponent<PlayerMovement> ();
+		player2Script = player2.GetComponent<PlayerMovement> ();
 
 		cameraComponent = GetComponent<Camera>();
 
@@ -125,245 +108,16 @@ public class CameraFollowScript : MonoBehaviour
 		{
 		case 0:
 			ZoomOut ();
-			playersJoint.maxDistance = 50;
+			playersJoint.maxDistance = minDistanceJoint;
 			followingBothBy = "Zooming Out";
 			break;
 		case 1:
-			playersJoint.maxDistance = 20;
+			playersJoint.maxDistance = minDistanceJoint2;
 			followingBothBy = "Blocking Them";
 			break;
 		case 2:
 			followingBothBy = "Doing Nothing";
 			break;
-		}
-	}
-
-	void BlockPlayersToScreenEdges ()
-	{
-		player1WorldToScreen = cameraComponent.WorldToScreenPoint (player1.transform.position);
-		player2WorldToScreen = cameraComponent.WorldToScreenPoint (player2.transform.position);
-
-		//Bloque les Players en X
-
-		//Bloque Player1 en X
-		if(player1WorldToScreen.x <= screenWidthEdge)
-		{
-			player1WorldToScreen.x = screenWidthEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-	
-			player1.transform.position = new Vector3 (temp.x, player1.transform.position.y, player1.transform.position.z);
-			player1Script.leftBlocked = true;
-		}
-
-		else if(player1WorldToScreen.x >= Screen.width - screenWidthEdge)
-		{
-			player1WorldToScreen.x = Screen.width - screenWidthEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (temp.x, player1.transform.position.y, player1.transform.position.z);
-			player1Script.rightBlocked = true;
-		}
-		else
-		{
-			player1Script.leftBlocked = false;
-			player1Script.rightBlocked = false;
-		}
-
-		//Bloque Player2 en X
-		if(player2WorldToScreen.x <= screenWidthEdge)
-		{
-			player2WorldToScreen.x = screenWidthEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (temp.x, player2.transform.position.y, player2.transform.position.z);
-			player2Script.leftBlocked = true;
-		}
-
-		else if(player2WorldToScreen.x >= Screen.width - screenWidthEdge)
-		{
-			player2WorldToScreen.x = Screen.width - screenWidthEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (temp.x, player2.transform.position.y, player2.transform.position.z);
-			player2Script.rightBlocked = true;
-		}
-		else
-		{
-			player2Script.leftBlocked = false;
-			player2Script.rightBlocked = false;
-		}
-			
-		//Bloque les Players en Y
-
-		//Bloque Player1 en Y
-		if(player1WorldToScreen.y <= screenBottomEdge)
-		{
-			player1WorldToScreen.y = screenBottomEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (player1.transform.position.x, player1.transform.position.y, temp.z);
-			player1Script.backwardsBlocked = true;
-		}
-
-		else if(player1WorldToScreen.y >= Screen.height - screenTopEdge)
-		{
-			player1WorldToScreen.y = Screen.height - screenTopEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (player1.transform.position.x, player1.transform.position.y, temp.z);
-			player1Script.forwardsBlocked = true;
-		}
-		else
-		{
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
-		}
-
-		//Bloque Player2 en Y
-		if(player2WorldToScreen.y <= screenBottomEdge)
-		{
-			player2WorldToScreen.y = screenBottomEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (player2.transform.position.x, player2.transform.position.y, temp.z);
-			player2Script.backwardsBlocked = true;
-		}
-
-		else if(player2WorldToScreen.y >= Screen.height - screenTopEdge)
-		{
-			player2WorldToScreen.y = Screen.height - screenTopEdge;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (player2.transform.position.x, player2.transform.position.y, temp.z);
-			player2Script.forwardsBlocked = true;
-		}
-		else
-		{
-			player2Script.backwardsBlocked = false;
-			player2Script.forwardsBlocked = false;
-		}
-
-	}
-
-	void BlockPlayersToScreenEdgesZoomOut ()
-	{
-		player1WorldToScreen = cameraComponent.WorldToScreenPoint (player1.transform.position);
-		player2WorldToScreen = cameraComponent.WorldToScreenPoint (player2.transform.position);
-
-		//Bloque les Players en X
-
-		//Bloque Player1 en X
-		if(player1WorldToScreen.x <= screenWidthEdge2)
-		{
-			player1WorldToScreen.x = screenWidthEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (temp.x, player1.transform.position.y, player1.transform.position.z);
-			player1Script.leftBlocked = true;
-		}
-
-		else if(player1WorldToScreen.x >= Screen.width - screenWidthEdge2)
-		{
-			player1WorldToScreen.x = Screen.width - screenWidthEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (temp.x, player1.transform.position.y, player1.transform.position.z);
-			player1Script.rightBlocked = true;
-		}
-		else
-		{
-			player1Script.leftBlocked = false;
-			player1Script.rightBlocked = false;
-		}
-
-		//Bloque Player2 en X
-		if(player2WorldToScreen.x <= screenWidthEdge2)
-		{
-			player2WorldToScreen.x = screenWidthEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (temp.x, player2.transform.position.y, player2.transform.position.z);
-			player2Script.leftBlocked = true;
-		}
-
-		else if(player2WorldToScreen.x >= Screen.width - screenWidthEdge2)
-		{
-			player2WorldToScreen.x = Screen.width - screenWidthEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (temp.x, player2.transform.position.y, player2.transform.position.z);
-			player2Script.rightBlocked = true;
-		}
-		else
-		{
-			player2Script.leftBlocked = false;
-			player2Script.rightBlocked = false;
-		}
-
-		//Bloque les Players en Y
-
-		//Bloque Player1 en Y
-		if(player1WorldToScreen.y <= screenBottomEdge2)
-		{
-			player1WorldToScreen.y = screenBottomEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (player1.transform.position.x, player1.transform.position.y, temp.z);
-			player1Script.backwardsBlocked = true;
-		}
-
-		else if(player1WorldToScreen.y >= Screen.height - screenTopEdge2)
-		{
-			player1WorldToScreen.y = Screen.height - screenTopEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player1WorldToScreen);
-
-			player1.transform.position = new Vector3 (player1.transform.position.x, player1.transform.position.y, temp.z);
-			player1Script.forwardsBlocked = true;
-		}
-		else
-		{
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
-		}
-
-		//Bloque Player2 en Y
-		if(player2WorldToScreen.y <= screenBottomEdge2)
-		{
-			player2WorldToScreen.y = screenBottomEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (player2.transform.position.x, player2.transform.position.y, temp.z);
-			player2Script.backwardsBlocked = true;
-		}
-
-		else if(player2WorldToScreen.y >= Screen.height - screenTopEdge2)
-		{
-			player2WorldToScreen.y = Screen.height - screenTopEdge2;
-
-			Vector3 temp = cameraComponent.ScreenToWorldPoint(player2WorldToScreen);
-
-			player2.transform.position = new Vector3 (player2.transform.position.x, player2.transform.position.y, temp.z);
-			player2Script.forwardsBlocked = true;
-		}
-		else
-		{
-			player2Script.backwardsBlocked = false;
-			player2Script.forwardsBlocked = false;
 		}
 	}
 
@@ -373,11 +127,6 @@ public class CameraFollowScript : MonoBehaviour
 		{
 			offsetCamera.y = Mathf.Lerp(offsetCamera.y, originalPosition.y, cameraLerpZoomOut);
 			offsetCamera.z = Mathf.Lerp(offsetCamera.z, originalPosition.z, cameraLerpZoomOut);
-
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
 		}
 
 		else if(distanceBetweenPlayers > distanceMinZoomOut && distanceBetweenPlayers < distanceMaxZoomOut)
@@ -389,10 +138,6 @@ public class CameraFollowScript : MonoBehaviour
 
 			offsetCamera.z = Mathf.Lerp(offsetCamera.z, offsetZ, cameraLerpZoomOut);
 
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
-			player1Script.backwardsBlocked = false;
-			player1Script.forwardsBlocked = false;
 		}
 		else if(distanceBetweenPlayers > distanceMaxZoomOut)
 		{

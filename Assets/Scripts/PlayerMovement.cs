@@ -2,26 +2,32 @@
 using System.Collections;
 using Rewired;
 
-public class PlayerScript : MonoBehaviour 
+public class PlayerMovement : MonoBehaviour 
 {
 	public int playerId = 0; // The Rewired player id of this character
 
 	[Header ("Movement")]
-	public float movementSpeed;
-	public float jumpForce;
-	public float gravityForce = 1;
-	
+	public float movementSpeed = 10f;
+	public float maxVelocityChange = 10f;
+	public float jumpForce = 15f;
+	public float gravityForce = 40f;
+	public bool physicsMovement;
+
+	[Header ("Shoot Ball")]
+	public float shootForce;
+	public float distanceToShoot;
+	public float shootHeight;
+
 	private Player player; // The Rewired Player
 	private Rigidbody rigidbodyPlayer;
 	
-	public Vector3 movementVector;
+	private Vector3 movementVector;
+
+	private bool canShoot = true;
 
 	private float distToGround;
 
-	public bool rightBlocked;
-	public bool leftBlocked;
-	public bool forwardsBlocked;
-	public bool backwardsBlocked;
+	private Rigidbody ball;
 
 	[HideInInspector]
 	public float bumpForce;
@@ -29,6 +35,7 @@ public class PlayerScript : MonoBehaviour
 	public bool bumped = false;
 	[HideInInspector]
 	public float bumpedDuration;
+
 
 	void Awake ()
 	{
@@ -44,7 +51,7 @@ public class PlayerScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		ball = GameObject.FindGameObjectWithTag ("Ball").GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -52,30 +59,23 @@ public class PlayerScript : MonoBehaviour
 	{
 		GetInput();
 
+		if(canShoot)
+			StartCoroutine (ShootBall ());
 	}
 	
 	void FixedUpdate () 
 	{
-		PlayerMovement();
+		if (physicsMovement)
+			PhysicsMovement ();
+		else
+			TransformMovement();
 	}
 	
 	void GetInput() 
 	{
-		movementVector = new Vector3 (player.GetAxisRaw ("Move Horizontal"), 0, player.GetAxisRaw ("Move Vertical"));
+		movementVector = new Vector3 (player.GetAxis ("Move Horizontal"), 0, player.GetAxis ("Move Vertical"));
 
-		movementVector = movementVector.normalized * movementSpeed;
-
-		if (leftBlocked && movementVector.x < 0)
-			movementVector.x = 0;
-
-		else if (rightBlocked && movementVector.x > 0)
-			movementVector.x = 0;
-
-		else if (backwardsBlocked && movementVector.z < 0)
-			movementVector.z = 0;
-
-		else if (forwardsBlocked && movementVector.z > 0)
-			movementVector.z = 0;
+		movementVector = movementVector * movementSpeed;
 
 		if(player.GetButton("Jump") && IsGrounded ())
 		{
@@ -88,20 +88,39 @@ public class PlayerScript : MonoBehaviour
 		return Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.2f);
 	}
 	
-	void PlayerMovement() 
+	void TransformMovement() 
 	{
 		if(!bumped)
 			rigidbodyPlayer.MovePosition (transform.position + movementVector * Time.deltaTime);
 
 		rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
 	}
-	
+
+	void PhysicsMovement ()
+	{
+		// Calculate how fast we should be moving
+		Vector3 targetVelocity = new Vector3 (player.GetAxis ("Move Horizontal"), 0, player.GetAxis ("Move Vertical"));
+		targetVelocity = transform.TransformDirection(targetVelocity);
+		targetVelocity *= movementSpeed;
+
+		// Apply a force that attempts to reach our target velocity
+		Vector3 velocity = GetComponent<Rigidbody>().velocity;
+		Vector3 velocityChange = (targetVelocity - velocity);
+
+		velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+		velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+		velocityChange.y = 0;
+
+		rigidbodyPlayer.AddForce(velocityChange, ForceMode.VelocityChange);
+
+		rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
+	}
+
 	void PlayerJump ()
 	{
 		rigidbodyPlayer.velocity = new Vector3(rigidbodyPlayer.velocity.x, jumpForce, rigidbodyPlayer.velocity.z);
 	}
-
-
+		
 	public void Bump (BumpedDirection direction)
 	{
 		if(!bumped)
@@ -135,5 +154,25 @@ public class PlayerScript : MonoBehaviour
 		yield return new WaitForSeconds (bumpedDuration);
 
 		bumped = false;
+	}
+
+	IEnumerator ShootBall ()
+	{
+		if (player.GetButton ("Action"))
+		{
+			if(Vector3.Distance(ball.transform.position, transform.position) < distanceToShoot)
+			{
+				canShoot = false;
+
+				PlayerAction.ShootBall (ball, transform, shootForce, shootHeight);
+				Debug.Log ("Shoot");
+
+				yield return new WaitForSeconds (0.5f);
+
+				canShoot = true;
+			}
+		}
+
+		yield return null;
 	}
 }
