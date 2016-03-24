@@ -106,6 +106,7 @@ public class PlayerAction : MonoBehaviour
 			if (holdMovable)
 			{
 				holdingObject = true;
+				holdMovable.tag = "HoldMovable";
 
 				holdMovable.transform.DOLocalRotate (Vector3.zero, 0.1f);
 
@@ -135,6 +136,7 @@ public class PlayerAction : MonoBehaviour
 			holdMovable.GetComponent<Rigidbody> ().AddForce (direction * throwForce, ForceMode.VelocityChange);
 		}
 
+		holdMovable.tag = "Movable";
 		holdMovable = null;
 
 		holdingObject = false;

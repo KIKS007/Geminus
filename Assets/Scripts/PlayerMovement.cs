@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	public float movementSpeed = 10f;
 	public float maxVelocityChange = 10f;
 	public float jumpForce = 15f;
+	public float groundedRayLength = 0.2f;
 	public float gravityForce = 40f;
 	public bool physicsMovement;
 
@@ -38,6 +39,14 @@ public class PlayerMovement : MonoBehaviour
 		GetInput();
 
 		LookForward ();
+
+		Vector3 direction = transform.position;
+
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z), new Vector3(0, -distToGround - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x - 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x + 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z - 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z + 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
 	}
 	
 	void FixedUpdate () 
@@ -62,7 +71,28 @@ public class PlayerMovement : MonoBehaviour
 	
 	public bool IsGrounded ()
 	{
-		return Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.2f);
+		Vector3 position = transform.position;
+
+		//return Physics.Raycast (transform.position, -Vector3.up, distToGround + groundedRayLength);
+
+
+		if(Physics.Raycast (new Vector3(position.x, position.y, position.z), -Vector3.up, distToGround + groundedRayLength))
+			return true;
+		
+		else if(Physics.Raycast (new Vector3(position.x - 0.3f, position.y, position.z), -Vector3.up, distToGround - 0.1f + groundedRayLength))
+			return true;
+		
+		else if(Physics.Raycast (new Vector3(position.x + 0.3f, position.y, position.z), -Vector3.up, distToGround - 0.1f + groundedRayLength))
+			return true;
+		
+		else if(Physics.Raycast (new Vector3(position.x, position.y, position.z - 0.3f), -Vector3.up, distToGround - 0.1f + groundedRayLength))
+			return true;
+		
+		else if(Physics.Raycast (new Vector3(position.x, position.y, position.z + 0.3f), -Vector3.up, distToGround - 0.1f + groundedRayLength))
+			return true;
+
+		else
+			return false;
 	}
 	
 	void TransformMovement() 
