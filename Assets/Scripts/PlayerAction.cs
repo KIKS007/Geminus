@@ -33,7 +33,7 @@ public class PlayerAction : MonoBehaviour
 	private Rigidbody ball;
 
 	private bool holdingObject = false;
-
+	private string originalTag;
 	private GameObject holdMovable;
 
 	private float mass;
@@ -97,7 +97,7 @@ public class PlayerAction : MonoBehaviour
 
 			for(int i = 0; i < movables.Length; i++)
 			{
-				if(movables[i].tag == "Movable")
+				if(movables[i].tag == "Movable" || movables[i].tag == "Fruit")
 				{
 					if (!holdMovable)
 						holdMovable = movables [i].gameObject;
@@ -110,6 +110,7 @@ public class PlayerAction : MonoBehaviour
 			if (holdMovable)
 			{
 				holdingObject = true;
+				originalTag = holdMovable.tag;
 				holdMovable.tag = "HoldMovable";
 
 				holdMovable.transform.DOLocalRotate (Vector3.zero, 0.1f);
@@ -120,7 +121,10 @@ public class PlayerAction : MonoBehaviour
 				}
 
 				AddAndRemoveRigibody (false);
+
+				if(originalTag == "Movable")
 				holdMovable.GetComponent<Collider>().material = noFriction;
+				
 				holdMovable.transform.SetParent (transform);
 			}
 		}
@@ -131,17 +135,29 @@ public class PlayerAction : MonoBehaviour
 		holdMovable.transform.SetParent (null);
 
 		AddAndRemoveRigibody (true);
-		holdMovable.GetComponent<Collider>().material = null;
+
+		if(originalTag == "Movable")
+			holdMovable.GetComponent<Collider>().material = null;
 
 		if(rigidbodyPlayer.velocity != Vector3.zero)
 		{
 			Vector3 direction = rigidbodyPlayer.velocity;
-			direction.y = throwHeight;
 
-			holdMovable.GetComponent<Rigidbody> ().AddForce (direction * throwForce, ForceMode.VelocityChange);
+			if(originalTag == "Movable")
+			{
+				direction.y = throwHeight;
+				holdMovable.GetComponent<Rigidbody> ().AddForce (direction * throwForce, ForceMode.VelocityChange);
+			}
+
+			else if(originalTag == "Fruit")
+			{
+				direction.y = throwHeight2;
+				holdMovable.GetComponent<Rigidbody> ().AddForce (direction * throwForce2, ForceMode.VelocityChange);
+			}
+
 		}
 
-		holdMovable.tag = "Movable";
+		holdMovable.tag = originalTag;
 		holdMovable = null;
 
 		holdingObject = false;

@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerAction.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="169" Column="5" />
-      <File FileName="Assets\Scripts\PlayerAction.cs" Line="121" Column="5" />
+      <File FileName="Assets\Scripts\PlayerAction.cs" Line="107" Column="6" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraFollowScript.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
