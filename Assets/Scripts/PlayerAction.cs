@@ -14,11 +14,16 @@ public class PlayerAction : MonoBehaviour
 	public float shootForce = 10;
 	public float shootHeight = 0.5f;
 
-	[Header ("Pick and Throw Object")]
+	[Header ("Pick and Throw Objects")]
 	public Transform holdPoint;
+	public PhysicMaterial noFriction;
 	public float throwForce = 1.5f;
 	public float throwHeight = 1f;
 	public float sphereRadius = 1.5f;
+
+	[Header ("Pick and Throw Fruits")]
+	public float throwForce2 = 1.5f;
+	public float throwHeight2 = 1f;
 
 	private bool canShoot = true;
 
@@ -48,7 +53,7 @@ public class PlayerAction : MonoBehaviour
 
 	void Update ()
 	{
-		if (shootBallAction && canShoot && player.GetButtonDown ("Action"))
+		if (shootBallAction && canShoot && player.GetButtonDown ("Punch"))
 			ShootBall ();
 
 		if (pickAndThrowAction && player.GetButtonDown ("Action"))
@@ -60,7 +65,6 @@ public class PlayerAction : MonoBehaviour
 				Throw ();
 		}
 			
-
 		//Debug.Log (rigidbodyPlayer.velocity);
 	}
 
@@ -70,7 +74,7 @@ public class PlayerAction : MonoBehaviour
 		{
 			canShoot = false;
 
-			Debug.Log ("Shoot");
+			//Debug.Log ("Shoot");
 
 			Vector3 direction = ball.transform.position - transform.position;
 			direction.Normalize ();
@@ -116,7 +120,7 @@ public class PlayerAction : MonoBehaviour
 				}
 
 				AddAndRemoveRigibody (false);
-
+				holdMovable.GetComponent<Collider>().material = noFriction;
 				holdMovable.transform.SetParent (transform);
 			}
 		}
@@ -127,6 +131,7 @@ public class PlayerAction : MonoBehaviour
 		holdMovable.transform.SetParent (null);
 
 		AddAndRemoveRigibody (true);
+		holdMovable.GetComponent<Collider>().material = null;
 
 		if(rigidbodyPlayer.velocity != Vector3.zero)
 		{

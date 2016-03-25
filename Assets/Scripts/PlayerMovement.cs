@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Rewired;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour 
 {
@@ -14,10 +15,18 @@ public class PlayerMovement : MonoBehaviour
 	public float gravityForce = 40f;
 	public bool physicsMovement;
 
+	[Header("Dash")]
+	public float dashForce = 3;
+	public float dashDuration = 0.2f;
+	public float dashCoolDown = 0.2f;
+	public Ease dashEaseType = Ease.OutCubic;
+	public bool canDash = true;
+	public bool dashing = false;
+
 	private Player player; // The Rewired Player
 	private Rigidbody rigidbodyPlayer;
 	
-	private Vector3 movementVector;
+	public Vector3 movementVector;
 
 	private float distToGround;
 
@@ -40,21 +49,23 @@ public class PlayerMovement : MonoBehaviour
 
 		LookForward ();
 
-		Vector3 direction = transform.position;
+		IsGroundedDebug ();
 
-		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z), new Vector3(0, -distToGround - groundedRayLength, 0), Color.red);
-		Debug.DrawRay(new Vector3(direction.x - 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
-		Debug.DrawRay(new Vector3(direction.x + 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
-		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z - 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
-		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z + 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		if(player.GetButton("Dash") && !dashing && canDash)
+			StartCoroutine(Dash ());
 	}
 	
 	void FixedUpdate () 
 	{
-		if (physicsMovement)
-			PhysicsMovement ();
-		else
-			TransformMovement();
+		if(!dashing)
+		{
+			if (physicsMovement)
+				PhysicsMovement ();
+			else
+				TransformMovement();
+		}
+
+		Gravity ();
 	}
 	
 	void GetInput() 
@@ -75,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
 
 		//return Physics.Raycast (transform.position, -Vector3.up, distToGround + groundedRayLength);
 
-
 		if(Physics.Raycast (new Vector3(position.x, position.y, position.z), -Vector3.up, distToGround + groundedRayLength))
 			return true;
 		
@@ -94,7 +104,18 @@ public class PlayerMovement : MonoBehaviour
 		else
 			return false;
 	}
-	
+
+	void IsGroundedDebug ()
+	{
+		Vector3 direction = transform.position;
+
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z), new Vector3(0, -distToGround - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x - 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x + 0.3f, direction.y, direction.z), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z - 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+		Debug.DrawRay(new Vector3(direction.x, direction.y, direction.z + 0.3f), new Vector3(0, -distToGround + 0.1f - groundedRayLength, 0), Color.red);
+	}
+
 	void TransformMovement() 
 	{
 		rigidbodyPlayer.MovePosition (transform.position + movementVector * Time.deltaTime);
@@ -118,7 +139,10 @@ public class PlayerMovement : MonoBehaviour
 		velocityChange.y = 0;
 
 		rigidbodyPlayer.AddForce(velocityChange, ForceMode.VelocityChange);
+	}
 
+	void Gravity ()
+	{
 		rigidbodyPlayer.AddForce (new Vector3 (0, -gravityForce, 0), ForceMode.Force);
 	}
 
@@ -135,5 +159,25 @@ public class PlayerMovement : MonoBehaviour
 	void PlayerJump ()
 	{
 		rigidbodyPlayer.velocity = new Vector3(rigidbodyPlayer.velocity.x, jumpForce, rigidbodyPlayer.velocity.z);
+	}
+
+	IEnumerator Dash ()
+	{
+		dashing = true;
+		canDash = false;
+
+		//Debug.Log("Dashing");
+
+		Vector3 dashVector = movementVector.normalized  * dashForce;
+
+		Tween myTween = DOTween.To(()=> dashVector, x=> dashVector = x, Vector3.zero, dashDuration).SetEase(dashEaseType).OnUpdate( ()=> rigidbodyPlayer.velocity = new Vector3(dashVector.x, rigidbodyPlayer.velocity.y, dashVector.z));
+
+		yield return myTween.WaitForCompletion();
+
+		dashing = false;
+
+		yield return new WaitForSeconds(dashCoolDown);
+
+		canDash = true;
 	}
 }
